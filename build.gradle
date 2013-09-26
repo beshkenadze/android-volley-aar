@@ -1,0 +1,45 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:0.5+'
+    }
+}
+
+apply plugin: 'android-library'
+apply plugin: 'maven'
+
+version '1.0'
+group 'com.android.volley'
+
+
+dependencies {
+   
+}
+
+android {
+    sourceSets {
+        main {
+            manifest.srcFile 'volley/AndroidManifest.xml'
+            java.srcDirs = ['volley/src']
+        }
+    }
+    buildToolsVersion "17.0"
+    compileSdkVersion 17
+}
+
+
+task wrapper(type: Wrapper) {
+  gradle = "1.6"
+}
+
+android.libraryVariants
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: "file://"+System.getProperty("user.home")+"/.m2/repository")
+        }
+    }
+}
